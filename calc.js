@@ -12,5 +12,12 @@ let displayValue =[]
 
 const calculatorScreen = document.querySelector('#calculatorScreen')
 
-
+const calcButtons = document.getElementById('calcButtons')
+calcButtons.addEventListener('click', event => {
+    if (event.target.className === 'numButton') {
+        console.log(event.target.innerHTML);
+        document.getElementById("calculatorScreen").value = displayValue
+        displayValue += event.target.innerHTML
+    }
+});
 
