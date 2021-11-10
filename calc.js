@@ -1,17 +1,17 @@
-const add = (a,b) => a + b;
+const add = (a,b) => parseFloat(a) + parseFloat(b);
 
-const subtract = (a,b) => a - b;
+const subtract = (a,b) => parseFloat(a) - parseFloat(b);
 
-const multiply = (a,b) => a * b;
+const multiply = (a,b) => parseFloat(a) * parseFloat(b);
 
-const divide = (a,b) => a/b;
+const divide = (a,b) => parseFloat(a)/parseFloat(b);
 
-const operate = (operation, num1, num2) => func(num1, num2)
+const operate = (operationValue, firstValue, secondValue) => operationValue(firstValue, secondValue)
 
 let displayValue = []
 let firstValue = []
 let secondValue = []
-let operation = []
+let operationValue = []
 
 let calculatorScreen = document.querySelector('#calculatorScreen')
 
@@ -82,14 +82,32 @@ posNeg.addEventListener('click', () => {
 const plusButton = document.querySelector('#plusButton')
 plusButton.addEventListener('click', () => {
     console.log('works');
-    operation = add;
+    operationValue = add;
 
+})
 
+const subButton = document.querySelector('#subButton')
+subButton.addEventListener('click', () => {
+    console.log('sub works');
+    operationValue = subtract;
+})
+
+const divButton = document.querySelector('#divideButton')
+divButton.addEventListener('click', () => {
+    console.log('div works');
+    operationValue = divide;
+})
+
+const multiButton = document.querySelector('#multiButton')
+multiButton.addEventListener('click', () => {
+    console.log('multi works');
+    operationValue = multiply;
 })
 
 const equalsButton = document.querySelector('.equal')
 equalsButton.addEventListener('click', () => {
-    operate();
+    const val = operate(operationValue, firstValue, secondValue);
+    console.log(val);
+    calculatorScreen.value = val
+
 })
-
-
