@@ -70,7 +70,8 @@ function clearScreen() {
 const deleteButton = document.querySelector('.delButton')
 deleteButton.addEventListener('click', () => {
     console.log('popped');
-    displayValue.pop();
+    displayValue = displayValue.slice(0,-1);
+    calculatorScreen.value = displayValue
     
 })
 
@@ -110,6 +111,7 @@ const equalsButton = document.querySelector('.equal')
 equalsButton.addEventListener('click', () => {
     const val = operate(operationValue, firstValue, secondValue);
     console.log(val);
-    calculatorScreen.value = val
+    calculatorScreen.value = val;
+    displayValue = val;
 
 })
