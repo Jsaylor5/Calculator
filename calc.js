@@ -57,6 +57,8 @@ calcButtons.addEventListener('click', event => {
 const acButton = document.querySelector('.clearButton')
 acButton.addEventListener('click', () => {
     clearScreen();
+    firstValue = []
+    secondValue = []
 })
 
 function clearScreen() {
