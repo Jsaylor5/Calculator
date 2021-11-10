@@ -61,7 +61,7 @@ acButton.addEventListener('click', () => {
 
 function clearScreen() {
     displayValue = []
-    calculatorScreen.value = displayValue;
+    calculatorScreen.value = 0;
 }
 
 //*does not work*
