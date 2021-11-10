@@ -29,14 +29,14 @@ calcButtons.addEventListener('click', event => {
         secondValue += displayValue;  
     }
 
-    else if (event.target.className === 'numButton' && displayValue.length <= 7 && secondValue.length > 0) {
+    else if (event.target.className === 'numButton' && displayValue.length <= 7 && secondValue.length > 0.000) {
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue; 
         secondValue = displayValue 
     }
 
     //maybe. if a func button is pressed and both values are populated, the display gets sent to firstValue
-    else if (event.target.className === 'func' && firstValue.length >0 && secondValue.length > 0){
+    else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length > 0.000){
         firstValue = displayValue
         secondValue = []
     }
@@ -47,10 +47,10 @@ calcButtons.addEventListener('click', event => {
     }
 
     //why do these buttons stop allowing input after triggered?
-    else if (event.target.className === 'percentButton'){
-        displayValue = displayValue/100;
-        calculatorScreen.value = displayValue;
-    }
+    // else if (event.target.className === 'percentButton'){
+    //     displayValue = secondValue/100;
+    //     calculatorScreen.value = displayValue;
+    // }
 
 });
 
@@ -66,13 +66,18 @@ function clearScreen() {
     calculatorScreen.value = 0;
 }
 
-//*does not work*
 const deleteButton = document.querySelector('.delButton')
 deleteButton.addEventListener('click', () => {
-    console.log('popped');
     displayValue = displayValue.slice(0,-1);
     calculatorScreen.value = displayValue
     
+})
+
+const percentButton = document.querySelector('.percentButton')
+percentButton.addEventListener('click', () => {
+    secondValue = secondValue / 100
+    displayValue = secondValue /// 100 //* firstValue;
+    calculatorScreen.value = displayValue;
 })
 
 const posNeg = document.querySelector('.posNeg')
