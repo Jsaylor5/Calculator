@@ -36,7 +36,7 @@ calcButtons.addEventListener('click', event => {
     }
 
     //maybe. if a func button is pressed and both values are populated, the display gets sent to firstValue
-    else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length > 0.000){
+    else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length > 0.000) {
         firstValue = displayValue
         secondValue = []
     }
@@ -46,12 +46,10 @@ calcButtons.addEventListener('click', event => {
         firstValue = displayValue;
     }
 
-    //why do these buttons stop allowing input after triggered?
-    // else if (event.target.className === 'percentButton'){
-    //     displayValue = secondValue/100;
-    //     calculatorScreen.value = displayValue;
-    // }
-
+    //allows hitting equals multiple times to iterate by second value
+    else if (event.target.classname === 'equal' && firstValue.length > 0.000 && secondValue.length > 0.000) {
+        firstValue = displayValue;
+    }
 });
 
 const acButton = document.querySelector('.clearButton')
@@ -89,26 +87,22 @@ posNeg.addEventListener('click', () => {
 
 const plusButton = document.querySelector('#plusButton')
 plusButton.addEventListener('click', () => {
-    console.log('works');
     operationValue = add;
 
 })
 
 const subButton = document.querySelector('#subButton')
 subButton.addEventListener('click', () => {
-    console.log('sub works');
     operationValue = subtract;
 })
 
 const divButton = document.querySelector('#divideButton')
 divButton.addEventListener('click', () => {
-    console.log('div works');
     operationValue = divide;
 })
 
 const multiButton = document.querySelector('#multiButton')
 multiButton.addEventListener('click', () => {
-    console.log('multi works');
     operationValue = multiply;
 })
 
@@ -118,5 +112,6 @@ equalsButton.addEventListener('click', () => {
     console.log(val);
     calculatorScreen.value = val;
     displayValue = val;
+    firstValue = displayValue;
 
 })
