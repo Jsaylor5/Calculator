@@ -35,6 +35,12 @@ calcButtons.addEventListener('click', event => {
         secondValue = displayValue 
     }
 
+    else if (event.target.className === 'numButton' && secondValue.length === 0) {
+        displayValue += event.target.innerHTML;
+        calculatorScreen.value = displayValue; 
+        secondValue = displayValue
+    }
+
     //maybe. if a func button is pressed and both values are populated, the display gets sent to firstValue
     else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length > 0.000) {
         firstValue = displayValue
@@ -57,6 +63,7 @@ acButton.addEventListener('click', () => {
     clearScreen();
     firstValue = []
     secondValue = []
+    operationValue = []
 })
 
 function clearScreen() {
@@ -108,10 +115,14 @@ multiButton.addEventListener('click', () => {
 
 const equalsButton = document.querySelector('.equal')
 equalsButton.addEventListener('click', () => {
+    operateValues();
+})
+//changed displayValue = val to displayValue = [val] as it was returning the number outside of an array, and firstValue.length was undefined
+function operateValues(){
     const val = operate(operationValue, firstValue, secondValue);
     console.log(val);
     calculatorScreen.value = val;
-    displayValue = val;
+    displayValue = [val];
     firstValue = displayValue;
-
-})
+    
+}
