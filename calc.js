@@ -40,6 +40,11 @@ calcButtons.addEventListener('click', event => {
         calculatorScreen.value = displayValue; 
         secondValue = displayValue
     }
+    //*NEW
+    else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length === 0) {
+        operateValues();
+
+    }
 
     //maybe. if a func button is pressed and both values are populated, the display gets sent to firstValue
     else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length > 0.000) {
@@ -80,22 +85,31 @@ deleteButton.addEventListener('click', () => {
 
 const percentButton = document.querySelector('.percentButton')
 percentButton.addEventListener('click', () => {
-    secondValue = secondValue / 100
-    displayValue = secondValue /// 100 //* firstValue;
-    calculatorScreen.value = displayValue;
+    if (firstValue.length > 0){
+        secondValue = secondValue / 100
+        displayValue = secondValue /// 100 //* firstValue;
+        calculatorScreen.value = displayValue;
+    }
+    else{
+        clearScreen()
+    }
 })
 
 const posNeg = document.querySelector('.posNeg')
 posNeg.addEventListener('click', () => {
-    displayValue = displayValue * -1
-    calculatorScreen.value = displayValue
+    if (displayValue.length > 0){
+        displayValue = [displayValue * -1]
+        calculatorScreen.value = displayValue
+    }
+    else{
+        clearScreen()
+    }
     
  });
 
 const plusButton = document.querySelector('#plusButton')
 plusButton.addEventListener('click', () => {
     operationValue = add;
-
 })
 
 const subButton = document.querySelector('#subButton')
