@@ -32,32 +32,23 @@ calcButtons.addEventListener('click', event => {
     else if (event.target.className === 'numButton' && displayValue.length <= 7 && secondValue.length > 0.000) {
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue; 
-        secondValue = displayValue 
+        secondValue = displayValue;
     }
 
     else if (event.target.className === 'numButton' && secondValue.length === 0) {
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue; 
-        secondValue = displayValue
-    }
-    //*NEW
-    else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length === 0) {
-        operateValues();
-
+        secondValue = displayValue;
     }
 
-    //maybe. if a func button is pressed and both values are populated, the display gets sent to firstValue
     else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length > 0.000) {
-        firstValue = displayValue
         secondValue = []
     }
 
-    //if a function button is hit, writes displayvalue to firstvalue
     else if (event.target.className === 'func') {
         firstValue = displayValue;
     }
 
-    //allows hitting equals multiple times to iterate by second value
     else if (event.target.classname === 'equal' && firstValue.length > 0.000 && secondValue.length > 0.000) {
         firstValue = displayValue;
     }
@@ -79,51 +70,63 @@ function clearScreen() {
 const deleteButton = document.querySelector('.delButton')
 deleteButton.addEventListener('click', () => {
     displayValue = displayValue.slice(0,-1);
-    calculatorScreen.value = displayValue
+    calculatorScreen.value = displayValue;
     
 })
 
 const percentButton = document.querySelector('.percentButton')
 percentButton.addEventListener('click', () => {
     if (firstValue.length > 0){
-        secondValue = secondValue / 100
-        displayValue = secondValue /// 100 //* firstValue;
+        secondValue = secondValue / 100;
+        displayValue = secondValue;
         calculatorScreen.value = displayValue;
     }
     else{
-        clearScreen()
+        clearScreen();
     }
 })
 
 const posNeg = document.querySelector('.posNeg')
 posNeg.addEventListener('click', () => {
     if (displayValue.length > 0){
-        displayValue = [displayValue * -1]
-        calculatorScreen.value = displayValue
+        displayValue = [displayValue * -1];
+        calculatorScreen.value = displayValue;
     }
     else{
-        clearScreen()
+        clearScreen();
     }
     
  });
 
 const plusButton = document.querySelector('#plusButton')
 plusButton.addEventListener('click', () => {
+    if (operationValue.length > 0) {
+        operateValues();
+    }
     operationValue = add;
 })
 
 const subButton = document.querySelector('#subButton')
 subButton.addEventListener('click', () => {
+    if (operationValue.length > 0) {
+        operateValues();
+    }
     operationValue = subtract;
 })
 
 const divButton = document.querySelector('#divideButton')
 divButton.addEventListener('click', () => {
+    if (operationValue.length > 0) {
+        operateValues();
+    }
     operationValue = divide;
 })
 
 const multiButton = document.querySelector('#multiButton')
 multiButton.addEventListener('click', () => {
+    if (operationValue.length > 0) {
+        operateValues();
+    }
     operationValue = multiply;
 })
 
@@ -131,12 +134,17 @@ const equalsButton = document.querySelector('.equal')
 equalsButton.addEventListener('click', () => {
     operateValues();
 })
-//changed displayValue = val to displayValue = [val] as it was returning the number outside of an array, and firstValue.length was undefined
-function operateValues(){
-    const val = operate(operationValue, firstValue, secondValue);
-    console.log(val);
-    calculatorScreen.value = val;
-    displayValue = [val];
-    firstValue = displayValue;
+
+function operateValues() {
+    if (firstValue.length > 0 && secondValue.length > 0){
+        const val = operate(operationValue, firstValue, secondValue);
+        console.log(val);
+        calculatorScreen.value = val;
+        displayValue = [val];
+        firstValue = displayValue;
+    }
+    else{
+        calculatorScreen.value = displayValue;
+    }
     
 }
