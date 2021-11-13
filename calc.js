@@ -77,7 +77,7 @@ deleteButton.addEventListener('click', () => {
 const percentButton = document.querySelector('.percentButton')
 percentButton.addEventListener('click', () => {
     if (firstValue.length > 0){
-        secondValue = secondValue / 100;
+        secondValue = [secondValue / 100];
         displayValue = secondValue;
         calculatorScreen.value = displayValue;
     }
