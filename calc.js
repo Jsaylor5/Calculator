@@ -29,7 +29,7 @@ calcButtons.addEventListener('click', event => {
         secondValue += displayValue;  
     }
 
-    else if (event.target.className === 'numButton' && displayValue.length <= 7 && secondValue.length > 0.000) {
+    else if (event.target.className === 'numButton' && displayValue.length <= 7 && secondValue.length > 0.000000) {
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue; 
         secondValue = displayValue;
@@ -41,7 +41,7 @@ calcButtons.addEventListener('click', event => {
         secondValue = displayValue;
     }
 
-    else if (event.target.className === 'func' && firstValue.length > 0.000 && secondValue.length > 0.000) {
+    else if (event.target.className === 'func' && firstValue.length > 0.000000 && secondValue.length > 0.000000) {
         secondValue = []
     }
 
@@ -49,8 +49,13 @@ calcButtons.addEventListener('click', event => {
         firstValue = displayValue;
     }
 
-    else if (event.target.classname === 'equal' && firstValue.length > 0.000 && secondValue.length > 0.000) {
+    else if (event.target.classname === 'equal' && firstValue.length > 0.000000 && secondValue.length > 0.000000) {
         firstValue = displayValue;
+    }
+
+    else if (event.target.className === 'posNeg' && secondValue.length > 0.000000) {
+        secondValue = [secondValue * -1];
+
     }
 });
 
@@ -76,7 +81,7 @@ deleteButton.addEventListener('click', () => {
 
 const percentButton = document.querySelector('.percentButton')
 percentButton.addEventListener('click', () => {
-    if (firstValue.length > 0){
+    if (firstValue.length > 0.000000){
         secondValue = [secondValue / 100];
         displayValue = secondValue;
         calculatorScreen.value = displayValue;
@@ -91,6 +96,7 @@ posNeg.addEventListener('click', () => {
     if (displayValue.length > 0){
         displayValue = [displayValue * -1];
         calculatorScreen.value = displayValue;
+        //secondValue = []
     }
     else{
         clearScreen();
@@ -142,6 +148,9 @@ function operateValues() {
         calculatorScreen.value = val;
         displayValue = [val];
         firstValue = displayValue;
+    }
+    else if (secondValue.length === 0) {
+        secondValue = displayValue
     }
     else{
         calculatorScreen.value = displayValue;
