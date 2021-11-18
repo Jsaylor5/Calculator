@@ -49,10 +49,6 @@ calcButtons.addEventListener('click', event => {
         firstValue = displayValue;
     }
 
-    else if (event.target.classname === 'equal' && firstValue.length > 0.000000 && secondValue.length > 0.000000) {
-        firstValue = displayValue;
-    }
-
     else if (event.target.className === 'posNeg' && secondValue.length > 0.000000) {
         secondValue = [secondValue * -1];
 
@@ -62,10 +58,16 @@ calcButtons.addEventListener('click', event => {
 const acButton = document.querySelector('.clearButton')
 acButton.addEventListener('click', () => {
     clearScreen();
+    clearValues();
+})
+
+function clearValues() {
     firstValue = []
     secondValue = []
     operationValue = []
-})
+    displayValue = []
+    alreadyOperated = false;
+}
 
 function clearScreen() {
     displayValue = []
@@ -74,7 +76,8 @@ function clearScreen() {
 
 const deleteButton = document.querySelector('.delButton')
 deleteButton.addEventListener('click', () => {
-    displayValue = displayValue.slice(0,-1);
+    let x = displayValue.toString();
+    displayValue = x.slice(0,-1);
     calculatorScreen.value = displayValue;
     
 })
@@ -96,7 +99,6 @@ posNeg.addEventListener('click', () => {
     if (displayValue.length > 0){
         displayValue = [displayValue * -1];
         calculatorScreen.value = displayValue;
-        //secondValue = []
     }
     else{
         clearScreen();
@@ -142,15 +144,18 @@ equalsButton.addEventListener('click', () => {
 })
 
 function operateValues() {
-    if (firstValue.length > 0 && secondValue.length > 0){
+    if (secondValue == 0 && operationValue == divide) {
+        calculatorScreen.value = 'ERROR';
+        clearValues();
+        displayValue = 0;
+    }
+    else if (firstValue.length > 0 && secondValue.length > 0){
         const val = operate(operationValue, firstValue, secondValue);
         console.log(val);
-        calculatorScreen.value = val;
         displayValue = [val];
+        calculatorScreen.value = displayValue;
         firstValue = displayValue;
-    }
-    else if (secondValue.length === 0) {
-        secondValue = displayValue
+        secondValue = [];
     }
     else{
         calculatorScreen.value = displayValue;
