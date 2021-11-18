@@ -53,6 +53,11 @@ calcButtons.addEventListener('click', event => {
         secondValue = [secondValue * -1];
 
     }
+
+    else if (event.target.className === 'decimalButton' && displayValue.indexOf('.') < 0) {
+        displayValue += event.target.innerHTML;
+        calculatorScreen.value = displayValue; 
+    }
 });
 
 const acButton = document.querySelector('.clearButton')
@@ -162,3 +167,4 @@ function operateValues() {
     }
     
 }
+
