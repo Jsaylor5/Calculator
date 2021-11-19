@@ -22,7 +22,7 @@ calcButtons.addEventListener('click', event => {
         calculatorScreen.value = displayValue;  
     }
 
-    else if (event.target.className === 'numButton' && displayValue.length <= 7 && firstValue.length > 0 && secondValue.length === 0) {
+    else if (event.target.className === 'numButton' && displayValue.length <= 7 && firstValue.length > 0 && secondValue.length === 0 && displayValue.indexOf('.') < 0) {
         clearScreen();
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue;
@@ -53,7 +53,12 @@ calcButtons.addEventListener('click', event => {
         secondValue = [secondValue * -1];
 
     }
-
+    else if (event.target.className === 'decimalButton' && displayValue.indexOf('.') > 0 && firstValue.length > 0) {
+        clearScreen();
+        displayValue += 0 + event.target.innerHTML;
+        calculatorScreen.value = displayValue;
+        console.log('trip')
+    }
     else if (event.target.className === 'decimalButton' && displayValue.indexOf('.') < 0) {
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue; 
