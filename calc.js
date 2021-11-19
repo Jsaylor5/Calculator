@@ -26,7 +26,7 @@ calcButtons.addEventListener('click', event => {
         clearScreen();
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue;
-        secondValue += displayValue;  
+        secondValue += displayValue;
     }
 
     else if (event.target.className === 'numButton' && displayValue.length <= 7 && secondValue.length > 0.000000) {
@@ -57,8 +57,19 @@ calcButtons.addEventListener('click', event => {
         clearScreen();
         displayValue += 0 + event.target.innerHTML;
         calculatorScreen.value = displayValue;
-        console.log('trip')
     }
+
+    else if (event.target.className === 'decimalButton' && firstValue.length > 0 && secondValue.length > 0) {
+        displayValue += event.target.innerHTML;
+        calculatorScreen.value = displayValue;  
+    }
+    //not working
+    else if (event.target.className === 'decimalButton' && firstValue.length > 0) {
+        clearScreen();
+        displayValue += 0 + event.target.innerHTML;
+        calculatorScreen.value = displayValue;
+    }
+
     else if (event.target.className === 'decimalButton' && displayValue.indexOf('.') < 0) {
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue; 
@@ -172,4 +183,3 @@ function operateValues() {
     }
     
 }
-
