@@ -89,7 +89,6 @@ function clearValues() {
     secondValue = []
     operationValue = []
     displayValue = []
-    alreadyOperated = false;
 }
 
 function clearScreen() {
@@ -102,6 +101,7 @@ deleteButton.addEventListener('click', () => {
     let x = displayValue.toString();
     displayValue = x.slice(0,-1);
     calculatorScreen.value = displayValue;
+    firstValue = displayValue;
     
 })
 
@@ -175,10 +175,19 @@ function operateValues() {
     else if (firstValue.length > 0 && secondValue.length > 0){
         const val = operate(operationValue, firstValue, secondValue);
         console.log(val);
-        displayValue = [val];
-        calculatorScreen.value = displayValue;
-        firstValue = displayValue;
-        secondValue = [];
+        if (val < 9999.9999){
+            displayValue = [val];
+            calculatorScreen.value = displayValue;
+            firstValue = displayValue;
+            secondValue = [];
+        }
+        else if (val > 9999.9999){
+            expValue = val.toExponential(3);
+            displayValue = expValue;
+            calculatorScreen.value = displayValue;
+            firstValue = displayValue;
+            secondValue = [];
+        }
     }
     else{
         calculatorScreen.value = displayValue;
