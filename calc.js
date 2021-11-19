@@ -109,7 +109,8 @@ const percentButton = document.querySelector('.percentButton')
 percentButton.addEventListener('click', () => {
     if (firstValue.length > 0.000000){
         secondValue = [secondValue / 100];
-        displayValue = secondValue;
+        x = Number.parseFloat(displayValue);
+        displayValue = x.toFixed(4) + '%';
         calculatorScreen.value = displayValue;
     }
     else{
@@ -172,16 +173,16 @@ function operateValues() {
         clearValues();
         displayValue = 0;
     }
-    else if (firstValue.length > 0 && secondValue.length > 0){
+    else if (firstValue.length > 0 && secondValue.length > 0) {
         const val = operate(operationValue, firstValue, secondValue);
         console.log(val);
-        if (val < 9999.9999){
-            displayValue = [val];
+        if (val < 9999.9999) {
+            displayValue = [parseFloat(val.toFixed(3))];
             calculatorScreen.value = displayValue;
             firstValue = displayValue;
             secondValue = [];
         }
-        else if (val > 9999.9999){
+        else if (val > 9999.9999) {
             expValue = val.toExponential(3);
             displayValue = expValue;
             calculatorScreen.value = displayValue;
@@ -191,6 +192,5 @@ function operateValues() {
     }
     else{
         calculatorScreen.value = displayValue;
-    }
-    
-}
+    }  
+};
