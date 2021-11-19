@@ -17,19 +17,22 @@ let calculatorScreen = document.querySelector('#calculatorScreen')
 
 const calcButtons = document.querySelector('#calcButtons')
 calcButtons.addEventListener('click', event => {
-    if (event.target.className === 'numButton' && displayValue.length <= 7 && firstValue.length === 0) {
+    if (event.target.className === 'numButton' && displayValue.length <= 6 && firstValue.length === 0) {
         displayValue += event.target.innerHTML;
-        calculatorScreen.value = displayValue;  
+        calculatorScreen.value = displayValue; 
     }
-
-    else if (event.target.className === 'numButton' && displayValue.length <= 7 && firstValue.length > 0 && secondValue.length === 0 && displayValue.indexOf('.') < 0) {
+    else if (event.target.className === 'numButton' && displayValue.length <= 6 && firstValue.length > 0 && secondValue.length === 0 && displayValue === '0.') {
+        displayValue += event.target.innerHTML;
+        calculatorScreen.value = displayValue;
+        secondValue += displayValue;
+    }
+    else if (event.target.className === 'numButton' && displayValue.length <= 6 && firstValue.length > 0 && secondValue.length === 0) {
         clearScreen();
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue;
         secondValue += displayValue;
     }
-
-    else if (event.target.className === 'numButton' && displayValue.length <= 7 && secondValue.length > 0.000000) {
+    else if (event.target.className === 'numButton' && displayValue.length <= 6 && secondValue.length > 0.000000) {
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue; 
         secondValue = displayValue;
@@ -63,7 +66,6 @@ calcButtons.addEventListener('click', event => {
         displayValue += event.target.innerHTML;
         calculatorScreen.value = displayValue;  
     }
-    //not working
     else if (event.target.className === 'decimalButton' && firstValue.length > 0) {
         clearScreen();
         displayValue += 0 + event.target.innerHTML;
