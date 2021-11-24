@@ -101,7 +101,7 @@ deleteButton.addEventListener('click', () => {
     let x = displayValue.toString();
     displayValue = x.slice(0,-1);
     calculatorScreen.value = displayValue;
-    firstValue = displayValue;
+    //firstValue = displayValue;
     
 })
 
