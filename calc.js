@@ -101,7 +101,6 @@ deleteButton.addEventListener('click', () => {
     let x = displayValue.toString();
     displayValue = x.slice(0,-1);
     calculatorScreen.value = displayValue;
-    //firstValue = displayValue;
     
 })
 
@@ -183,7 +182,6 @@ function operateValues() {
     }
     else if (firstValue.length > 0 && secondValue.length > 0) {
         const val = operate(operationValue, firstValue, secondValue);
-        console.log(val);
         if (val < 9999.9999) {
             displayValue = [parseFloat(val.toFixed(3))];
             calculatorScreen.value = displayValue;
