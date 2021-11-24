@@ -107,14 +107,22 @@ deleteButton.addEventListener('click', () => {
 
 const percentButton = document.querySelector('.percentButton')
 percentButton.addEventListener('click', () => {
-    if (firstValue.length > 0.000000){
+    if (firstValue.length > 0.000000 && operationValue == multiply || operationValue == divide) {
         secondValue = [secondValue / 100];
         x = Number.parseFloat(displayValue);
         displayValue = x.toFixed(4) + '%';
         calculatorScreen.value = displayValue;
     }
+    else if (firstValue.length > 0.000000 && operationValue == add || operationValue == subtract) {
+        y = [secondValue / 100];
+        secondValue = [y * firstValue];
+        x = Number.parseFloat(secondValue);
+        displayValue = x.toFixed(4);
+        calculatorScreen.value = displayValue;
+    }
     else{
         clearScreen();
+        clearValues();
     }
 })
 
